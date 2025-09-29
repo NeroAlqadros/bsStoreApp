@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
-using WebApi.Repositories;
+using Services.Contracts;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly RepositoryContext _context;
+        private readonly IServiceManager _manager;
 
-        public BooksController(RepositoryContext context)
+        public BooksController(IServiceManager manager)
         {
-            _context = context;
+            _manager = manager;
         }
 
         [HttpGet]
@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var books = _context.Books.ToList();
+                var books = _manager.BookService.GetAllBooks(false);
                 return Ok(books);
             }
             catch (Exception ex)
@@ -37,10 +37,9 @@ namespace WebApi.Controllers
         {
             try
             {
-                var book = _context
-                .Books
-                .Where(book => book.Id.Equals(id))
-                .SingleOrDefault();
+                var book = _manager
+                .BookService
+                .GetOneBookById(id, false);
 
                 if (book is null)
                     return NotFound(); //404
@@ -62,8 +61,7 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); //400
 
-                _context.Books.Add(book);
-                _context.SaveChanges();
+                _manager.BookService.CreateOneBook(book);
 
                 return StatusCode(201, book);
             }
@@ -80,25 +78,12 @@ namespace WebApi.Controllers
         {
             try
             {
-                //check book?
-                var entity = _context
-                    .Books
-                    .Where(b => b.Id.Equals(id))
-                    .SingleOrDefault();
-
-                if (entity is null)
-                    return NotFound(); //404
-
-                //check id
-                if (id != book.Id)
+                if (book is null)
                     return BadRequest(); //400
 
-                entity.Title = book.Title;
-                entity.Price = book.Price;
+                _manager.BookService.UpdateOneBook(id, book, true);
 
-                _context.SaveChanges();
-
-                return Ok(book);
+                return NoContent(); //204
             }
             catch (Exception ex)
             {
@@ -113,20 +98,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var entity = _context
-                .Books
-                .Where(b => b.Id.Equals(id))
-                .SingleOrDefault();
-
-                if (entity is null)
-                    return NotFound(new
-                    {
-                        statusCode = 404,
-                        message = $"Book with id:{id} could not found"
-                    }); //404
-
-                _context.Books.Remove(entity);
-                _context.SaveChanges();
+                _manager.BookService.DeleteOneBook(id, true);
 
                 return NoContent();
             }
@@ -144,14 +116,16 @@ namespace WebApi.Controllers
         {
             try
             {
-                var entity = _context.Books.Where(b => b.Id.Equals(id))
-                    .SingleOrDefault();
+                var entity = _manager
+                    .BookService
+                    .GetOneBookById(id, true);
 
                 if (entity is null)
                     return NotFound(); //404
 
                 bookPatch.ApplyTo(entity);
-                _context.SaveChanges();
+                _manager.BookService.UpdateOneBook(id, entity, true);
+
 
                 return NoContent(); //204
             }

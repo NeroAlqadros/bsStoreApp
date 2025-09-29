@@ -7,7 +7,7 @@
 namespace WebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class startPoint : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

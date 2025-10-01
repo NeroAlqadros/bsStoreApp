@@ -1,0 +1,21 @@
+2025-09-30 12:02:06.8120 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-09-30 12:02:06.8292 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-09-30 12:02:06.8292 Info AutoReload Config File Monitor starting
+2025-09-30 12:02:06.8551 Info Configuration initialized.
+2025-09-30 12:06:14.3522 Info AppDomain Shutting down. LogFactory closing...
+2025-09-30 12:06:14.3522 Info AutoReload Config File Monitor stopping, since no active configuration
+2025-09-30 12:06:14.3635 Info LogFactory has been disposed.
+2025-09-30 12:06:19.1769 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-09-30 12:06:19.1935 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-09-30 12:06:19.1935 Info AutoReload Config File Monitor starting
+2025-09-30 12:06:19.2227 Info Configuration initialized.
+2025-09-30 12:09:03.5435 Info AppDomain Shutting down. LogFactory closing...
+2025-09-30 12:09:03.5515 Info AutoReload Config File Monitor stopping, since no active configuration
+2025-09-30 12:09:03.5515 Info LogFactory has been disposed.
+2025-09-30 12:09:37.8201 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-09-30 12:09:37.8362 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-09-30 12:09:37.8362 Info AutoReload Config File Monitor starting
+2025-09-30 12:09:37.8601 Info Configuration initialized.
+2025-09-30 12:10:15.6865 Info AppDomain Shutting down. LogFactory closing...
+2025-09-30 12:10:15.6953 Info AutoReload Config File Monitor stopping, since no active configuration
+2025-09-30 12:10:15.6953 Info LogFactory has been disposed.

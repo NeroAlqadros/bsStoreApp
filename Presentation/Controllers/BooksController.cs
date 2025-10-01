@@ -10,10 +10,12 @@ namespace Presentation.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
+        private readonly ILoggerService _logger;
 
-        public BooksController(IServiceManager manager)
+        public BooksController(IServiceManager manager, ILoggerService logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         [HttpGet]
